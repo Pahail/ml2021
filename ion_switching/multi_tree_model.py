@@ -257,7 +257,6 @@ sub = pd.read_csv('./data/sample_submission.csv')
 slow_channel, fast_channel, channel_3, channel_5, channel_10 = build_discontinuous_model(test['signal'])
 
 
-a = 100000
 for s in slow_channel:
     sub.iloc[s, 1] = model_1_slow_channel.predict(test.signal.values[s].reshape((-1, 1)))
 for s in fast_channel:
@@ -265,7 +264,7 @@ for s in fast_channel:
 for s in channel_3:
     sub.iloc[s, 1] = model_3_channels.predict(test.signal.values[s].reshape((-1, 1)))
 for s in channel_5:
-    sub.iloc[s, 1] = model_5_channels.predict(test.signal.values[2 * a:3 * a].reshape((-1, 1)))
+    sub.iloc[s, 1] = model_5_channels.predict(test.signal.values[s].reshape((-1, 1)))
 for s in channel_10:
     sub.iloc[s, 1] = model_10_channels.predict(test.signal.values[s].reshape((-1, 1)))
 
